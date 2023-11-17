@@ -1,0 +1,9 @@
+<h1>VACANCES</h1>
+
+<a routerLink="/login">Go to Login</a>
+
+<ul>
+    @for (vacanca of vacances; track $index) {
+        <li>{{vacanca.nom}}</li>
+    }
+</ul>
