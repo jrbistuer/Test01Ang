@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "testcifo01": {
+      "hosting": {
+        "Test01Ang": [
+          "testcifo01"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "testcifo01"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "Test01Ang",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

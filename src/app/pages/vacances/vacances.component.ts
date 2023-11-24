@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { VacancesService } from '../../model/services/vacances.service';
 import { IVacanca } from '../../model/models/vacanca';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-vacances',
@@ -19,7 +20,9 @@ export class VacancesComponent implements OnInit {
   vacancaSelected: IVacanca = {} as IVacanca;
 
   constructor(private vacancesService: VacancesService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,9 +33,9 @@ export class VacancesComponent implements OnInit {
   initForm() {
     this.vacancaForm = this.formBuilder.group({
       nom: [{value: '', disabled: false}, [Validators.required, Validators.minLength(5)]],
-      preu: [{value: '', disabled: false}, Validators.required],
-      pais: [{value: '', disabled: false}, Validators.required],
-      descripcio: [{value: '', disabled: false}]
+      preu: [{value: '', disabled: false}, [Validators.required]],
+      pais: [{value: '', disabled: false}, [Validators.required]],
+      descripcio: [{value: '', disabled: false}, []]
     })
   }
 
@@ -46,6 +49,12 @@ export class VacancesComponent implements OnInit {
 
   showVacanca($index: number) {
     this.vacancaSelected = this.vacancesService.getVacancesById($index);
+  }
+
+  closeSession() {
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
 }

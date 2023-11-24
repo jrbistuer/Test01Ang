@@ -1,5 +1,7 @@
 <h1>VACANCES</h1>
 
+<button type="button" (click)="closeSession()">Cerrar Sesión</button>
+
 <a routerLink="/login">Go to Login</a>
 
 <form [formGroup]="vacancaForm" (ngSubmit)="guardarVacanca()">
