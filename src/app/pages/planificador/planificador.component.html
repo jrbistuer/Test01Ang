@@ -1,0 +1,14 @@
+<app-adbar></app-adbar>
+
+<h1>Planificador</h1>
+
+<a routerLink="/vacances">Volver a vacances</a>
+
+<app-vacances-list [vacances]="vacances" (selectedVacanca)="showMap($event)"></app-vacances-list>
+
+
+<div>
+    <h2>Anar al mapa de {{vacancaSelected.nom}}</h2>
+</div>
+
+<app-adbar></app-adbar>

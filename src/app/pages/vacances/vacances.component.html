@@ -46,13 +46,13 @@
     <button type="submit">Guardar</button>
 </form>
 
-<ul>
-    @for (vacanca of vacances; track $index) {
-        <li (click)="showVacanca($index)">{{vacanca.nom}}</li>
-    }
-</ul>
+<a routerLink="/planificador">Ir a planificador de vacances</a>
+
+<app-vacances-list [vacances]="vacances" (selectedVacanca)="showVacanca($event)"></app-vacances-list>
 
 <div>
     <h2>{{vacancaSelected.nom}}</h2>
     <h3>{{vacancaSelected.preu}}</h3>
 </div>
+
+<app-adbar></app-adbar>

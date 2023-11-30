@@ -5,11 +5,13 @@ import { VacancesService } from '../../model/services/vacances.service';
 import { IVacanca } from '../../model/models/vacanca';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import { VacancesListComponent } from '../../shared/components/vacances-list/vacances-list.component';
+import { AdbarComponent } from '../../shared/components/adbar/adbar.component';
 
 @Component({
   selector: 'app-vacances',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, VacancesListComponent, AdbarComponent],
   templateUrl: './vacances.component.html',
   styleUrl: './vacances.component.scss'
 })
@@ -47,14 +49,15 @@ export class VacancesComponent implements OnInit {
     console.log(this.vacancaForm);
   }
 
-  showVacanca($index: number) {
-    this.vacancaSelected = this.vacancesService.getVacancesById($index);
-  }
 
   closeSession() {
     this.authService.logout().then(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  showVacanca($index: number) {
+    this.vacancaSelected = this.vacancesService.getVacancesById($index);
   }
 
 }

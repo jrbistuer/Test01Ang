@@ -1,0 +1,5 @@
+<ul>
+    @for (vacanca of vacances; track $index) {
+        <li (click)="emitVacanca($index)">{{vacanca.nom}}</li>
+    }
+</ul>
