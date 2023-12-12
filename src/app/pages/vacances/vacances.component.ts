@@ -21,6 +21,8 @@ export class VacancesComponent implements OnInit {
   vacancaForm!: FormGroup;
   vacancaSelected: IVacanca = {} as IVacanca;
 
+  storedNumber: number = 0;
+
   constructor(private vacancesService: VacancesService,
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -28,7 +30,9 @@ export class VacancesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vacances = this.vacancesService.getVacances();
+    this.vacancesService.getVacances().subscribe((res: IVacanca[]) => {
+      this.vacances = res;
+    });
     this.initForm();
   }
 
@@ -60,4 +64,21 @@ export class VacancesComponent implements OnInit {
     this.vacancaSelected = this.vacancesService.getVacancesById($index);
   }
 
+  getStoredNumber() {
+//    this.storedNumber = this.vacancesService.getStoredNumber();
+    this.vacancesService.getStoredNumberWithPromise().then((res: number) => {
+      this.storedNumber = res;
+      console.log('hola2');
+    });
+    console.log('hola1');
+    //this.vacancesService.printNumbersInConsole();
+  }
+
+  async getStoredNumberAsync() {
+    //    this.storedNumber = this.vacancesService.getStoredNumber();
+    this.storedNumber = await this.vacancesService.getStoredNumberWithPromise();
+    console.log('hola1');
+    //this.vacancesService.printNumbersInConsole();
+  }
+    
 }

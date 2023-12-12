@@ -21,7 +21,7 @@ export class PlanificadorComponent implements OnInit {
   constructor(private vacancesService: VacancesService) { }
 
   ngOnInit(): void {
-    this.vacances = this.vacancesService.getVacances();
+    //this.vacances = this.vacancesService.getVacances();
   }
 
   showMap($index: number) {
